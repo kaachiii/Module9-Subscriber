@@ -21,3 +21,13 @@
 ![Simulation slow subscriber](images/Screenshot%202025-05-06%20102912.png)
 
 Pada mesin saya, total antrean (queue) berjumlah sekitar 10. Hal ini terjadi karena ada delay pada proses penerimaan, sehingga publisher mengirim pesan lebih cepat daripada subscriber dapat memprosesnya. Akibatnya, pesan menumpuk di antrean.
+
+### Commit Reflection and Running at least three subscribers
+![Reflection and Running at least three subscribers](images/Screenshot%202025-05-06%20104718.png)
+![Reflection and Running at least three subscribers](images/Screenshot%20(1073).png)
+
+Pada gambar pertama terlihat bahwa ketiga subscriber menerima pesan secara bergantian. Misalnya, subscriber pertama menerima pesan dengan user_id 1, subscriber kedua menerima user_id 2, dan subscriber ketiga menerima user_id 3. Hal ini menunjukkan bahwa message broker membagi pesan secara rata ke subscriber yang terhubung ke antrean (queue) yang sama.
+
+Pada gambar kedua terlihat bahwa jumlah pesan dalam antrean berkurang, dari sekitar 10 menjadi 7,5. Hal ini terjadi karena semakin banyak subscriber yang aktif dan terhubung ke antrean yang sama, maka proses konsumsi pesan menjadi lebih cepat. Broker akan mendistribusikan pesan ke subscriber secara bergiliran, sehingga beban diproses lebih efisien.Setelah pesan diambil dari antrean oleh salah satu subscriber, pesan tersebut akan dihapus dari antrean dan tidak bisa diambil oleh subscriber lain.
+
+Menariknya, kita bisa mengubah perilaku sistem hanya dengan mengubah konfigurasi broker atau menambah/mengurangi jumlah subscriber, tanpa perlu memodifikasi kode program. Hal ini memberi fleksibilitas dalam mengatur performa dan skalabilitas sistem.
