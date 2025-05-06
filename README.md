@@ -16,3 +16,8 @@
         - 5672 = port yang digunakan oleh protokol amqp
 
     Jadi, guest:guest@localhost:5672 artinya, login ke server amqp (RabbitMQ) yang berjalan di localhost lewat port 5672, menggunakan username 'guest' dan password 'guest'.
+
+### Commit Simulation slow subscriber
+![Simulation slow subscriber](images/Screenshot%202025-05-06%20102912.png)
+
+Pada mesin saya, total antrean (queue) berjumlah sekitar 10. Hal ini terjadi karena ada delay pada proses penerimaan, sehingga publisher mengirim pesan lebih cepat daripada subscriber dapat memprosesnya. Akibatnya, pesan menumpuk di antrean.
